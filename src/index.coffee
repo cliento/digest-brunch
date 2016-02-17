@@ -156,13 +156,13 @@ class Digest
 
   _moveFile: (file, hash) ->
     newFile = @_addHashToPath(file, hash)
-    fs.renameSync(file, newFile)
-
-    for infix in @options.infixes
-      infixFile = @_addInfixToPath file, infix
-      if fs.existsSync(infixFile)
-        newInfixFile = @_addInfixToPath newFile, infix
-        fs.renameSync(infixFile, newInfixFile)
+#    fs.renameSync(file, newFile)
+#
+#    for infix in @options.infixes
+#      infixFile = @_addInfixToPath file, infix
+#      if fs.existsSync(infixFile)
+#        newInfixFile = @_addInfixToPath newFile, infix
+#        fs.renameSync(infixFile, newInfixFile)
 
   _validDigestFile: (file) ->
     if !fs.existsSync(file)
@@ -175,7 +175,7 @@ class Digest
       dir = pathlib.dirname(path)
       ext = pathlib.extname(path)
       base = pathlib.basename(path, ext)
-      newName = "#{base}-#{hash}#{ext}"
+      newName = "#{base}.#{hash}#{ext}"
       pathlib.join(dir, newName)
     else
       path
